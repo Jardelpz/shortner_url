@@ -1,4 +1,4 @@
-package model
+package domain
 
 type Url struct {
 	Id       uint16
