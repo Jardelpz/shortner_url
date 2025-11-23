@@ -1,6 +1,8 @@
 package domain
 
+import "context"
+
 type UrlRepository interface {
-	Insert(url *Url) error
-	Find(shortUrl string) (*Url, error)
+	Insert(ctx context.Context, url *Url) error
+	Find(ctx context.Context, shortUrl string) (*Url, error)
 }

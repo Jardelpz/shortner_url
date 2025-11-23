@@ -12,8 +12,8 @@ func NewRouter(urlHandler *UrlHandler) *gin.Engine {
 
 	v1 := r.Group("/v1")
 	{
-		v1.GET("/url", urlHandler.GetLongUrl)
-		v1.POST("/url", urlHandler.CreateShortUrl)
+		v1.GET("/url", urlHandler.GetLongUrlHandler)
+		v1.POST("/url", urlHandler.CreateShortUrlHandler)
 	}
 
 	return r

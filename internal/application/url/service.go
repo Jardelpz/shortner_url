@@ -15,9 +15,17 @@ func NewService(url_repo domain.UrlRepository) *Service {
 
 func (s *Service) InsertUrl(ctx context.Context, url domain.Url) error {
 	// validar se nao existe antes de inserir
-	err := s.repo.Insert(&url)
+	err := s.repo.Insert(ctx, &url)
 	if err != nil {
 		return err
 	}
 	return nil
+}
+
+func (s *Service) GetLongUrl(ctx context.Context, longUrl string) (*domain.Url, error) {
+	url, err := s.repo.Find(ctx, longUrl)
+	if err != nil {
+		return nil, err
+	}
+	return url, nil
 }

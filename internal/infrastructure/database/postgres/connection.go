@@ -12,6 +12,7 @@ import (
 )
 
 func ConnectionDatabase() *sql.DB {
+	// TODO : load envs with specific file
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("Error is occurred  on .env file please check")
