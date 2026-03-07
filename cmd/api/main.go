@@ -13,7 +13,7 @@ func main() {
 	dbPostgres := postgres.ConnectionDatabase()
 	defer dbPostgres.Close()
 
-	urlRepo := postgres.NewUrlRepository(dbPostgres) // this way, we can easily change de db
+	urlRepo := postgres.NewUrlRepository(dbPostgres) // we can easily change the db
 	urlSvc := url.NewService(urlRepo)
 	urlHandler := httpinfra.NewUrlHandler(urlSvc)
 	router := httpinfra.NewRouter(urlHandler)
