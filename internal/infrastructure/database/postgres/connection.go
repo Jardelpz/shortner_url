@@ -13,7 +13,7 @@ import (
 
 func ConnectionDatabase() *sql.DB {
 	// TODO : load envs with specific file
-	err := godotenv.Load(".env")
+	err := godotenv.Load("C:\\Users\\Jardel\\Desktop\\Estudo\\gitProjects\\shortner_url\\shortner_url\\.env")
 	if err != nil {
 		log.Fatal("Error is occurred  on .env file please check")
 	}

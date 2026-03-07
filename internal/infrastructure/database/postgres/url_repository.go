@@ -16,6 +16,11 @@ func NewUrlRepository(conn *sql.DB) *UrlRepository {
 }
 
 func (ur *UrlRepository) Insert(ctx context.Context, url *domain.Url) error {
+	sql := `INSERT INTO table_url(long_url, short_url) VALUES ($1, $2)`
+	_, err := ur.db.Exec(sql, url.LongUrl, url.ShortUrl)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -30,11 +35,9 @@ func (ur *UrlRepository) Find(ctx context.Context, shortUrl string) (*domain.Url
 	err := row.Scan(&url.LongUrl, &url.ShortUrl)
 
 	if err != nil {
-
 		if errors.Is(err, sql.ErrNoRows) {
 			return nil, domain.ErrUrlNotFound
 		}
-
 		return nil, err
 
 	}
