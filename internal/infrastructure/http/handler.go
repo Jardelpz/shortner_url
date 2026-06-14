@@ -24,17 +24,17 @@ func (u *UrlHandler) HealthCheck(c *gin.Context) {
 }
 
 func (u *UrlHandler) CreateShortUrlHandler(c *gin.Context) {
-	// validar se nao existe antes de inserir
-
 	var req dto.CreateShortUrlInput
-	if err := c.BindJSON(&req); err != nil {
+	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": "missing payload data: longUrl"})
+		return
 	}
 
 	ctx := c.Request.Context()
 	url, err := u.service.InsertUrl(ctx, req.LongUrl)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
+		return
 	}
 	c.JSON(http.StatusCreated, gin.H{"longUrl": url.LongUrl, "shorUrl": url.ShortUrl})
 }
