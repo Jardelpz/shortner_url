@@ -11,11 +11,11 @@ import (
 )
 
 type Service struct {
-	repo  domain.UrlRepository
-	cache domain.UrlCache
+	repo  UrlRepository
+	cache UrlCache
 }
 
-func NewService(urlRepo domain.UrlRepository, cache domain.UrlCache) *Service {
+func NewService(urlRepo UrlRepository, cache UrlCache) *Service {
 	return &Service{repo: urlRepo, cache: cache}
 }
 

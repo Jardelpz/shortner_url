@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"net/http"
-	"short_url/internal/application/url"
 	"short_url/internal/domain"
 	"short_url/internal/infrastructure/http/dto"
 	"time"
@@ -13,10 +12,10 @@ import (
 )
 
 type UrlHandler struct {
-	service *url.Service
+	service UrlService
 }
 
-func NewUrlHandler(svc *url.Service) *UrlHandler {
+func NewUrlHandler(svc UrlService) *UrlHandler {
 	return &UrlHandler{service: svc}
 }
 
