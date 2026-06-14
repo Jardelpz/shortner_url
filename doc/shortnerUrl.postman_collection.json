@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"longUrl\": \"teste123@daminha.comse/ds\"\r\n}",
+					"raw": "{\r\n    \"longUrl\": \"teste123@sd.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

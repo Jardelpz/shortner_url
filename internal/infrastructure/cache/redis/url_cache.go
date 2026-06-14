@@ -10,6 +10,8 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+const CacheTtl = 60 * time.Minute
+
 type UrlCache struct {
 	client *redis.Client
 }
@@ -35,13 +37,13 @@ func (c *UrlCache) Get(ctx context.Context, shortUrl string) (*domain.Url, error
 	return &url, nil
 }
 
-func (c *UrlCache) Set(ctx context.Context, url *domain.Url, ttl time.Duration) error {
+func (c *UrlCache) Set(ctx context.Context, url *domain.Url) error {
 	data, err := json.Marshal(url)
 	if err != nil {
 		return err
 	}
 
-	return c.client.Set(ctx, cacheKey(url.ShortUrl), data, ttl).Err()
+	return c.client.Set(ctx, cacheKey(url.ShortUrl), data, CacheTtl).Err()
 }
 
 func (c *UrlCache) Delete(ctx context.Context, shortUrl string) error {
